@@ -2,11 +2,11 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "Avalonia/11.2.1": {
+      "Avalonia/11.2.5": {
         "type": "package",
         "dependencies": {
-          "Avalonia.BuildServices": "0.0.29",
-          "Avalonia.Remote.Protocol": "11.2.1",
+          "Avalonia.BuildServices": "0.0.31",
+          "Avalonia.Remote.Protocol": "11.2.5",
           "MicroCom.Runtime": "0.11.0"
         },
         "compile": {
@@ -101,7 +101,7 @@
           }
         }
       },
-      "Avalonia.BuildServices/0.0.29": {
+      "Avalonia.BuildServices/0.0.31": {
         "type": "package",
         "build": {
           "buildTransitive/Avalonia.BuildServices.targets": {}
@@ -235,7 +235,7 @@
           }
         }
       },
-      "Avalonia.Remote.Protocol/11.2.1": {
+      "Avalonia.Remote.Protocol/11.2.5": {
         "type": "package",
         "compile": {
           "lib/net8.0/Avalonia.Remote.Protocol.dll": {
@@ -270,10 +270,10 @@
           }
         }
       },
-      "Avalonia.Themes.Fluent/11.2.1": {
+      "Avalonia.Themes.Fluent/11.2.5": {
         "type": "package",
         "dependencies": {
-          "Avalonia": "11.2.1"
+          "Avalonia": "11.2.5"
         },
         "compile": {
           "lib/net8.0/Avalonia.Themes.Fluent.dll": {
@@ -453,6 +453,19 @@
           "lib/net5.0/MicroCom.Runtime.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "SkiaSharp/2.88.8": {
         "type": "package",
         "dependencies": {
@@ -582,10 +595,10 @@
     }
   },
   "libraries": {
-    "Avalonia/11.2.1": {
-      "sha512": "AyYhIN2A7bRwxp6BFHrIbXAHUFPXegzSMYwDrUnw1BzZs9ctwYTiCPCM5wbE2PXsEBwFDVJ/a2YHTOp56fSYAw==",
+    "Avalonia/11.2.5": {
+      "sha512": "drAn4ymqy6c1AWIzpQIFLIQjPx9p7Ffsu+7bYy4vV8MtvmgiQ2s6R5HvmNuWheUtpHyhnowVQoOdJQl5uS6a+A==",
       "type": "package",
-      "path": "avalonia/11.2.1",
+      "path": "avalonia/11.2.5",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -593,7 +606,7 @@
         "Icon.png",
         "analyzers/dotnet/cs/Avalonia.Analyzers.dll",
         "analyzers/dotnet/cs/Avalonia.Generators.dll",
-        "avalonia.11.2.1.nupkg.sha512",
+        "avalonia.11.2.5.nupkg.sha512",
         "avalonia.nuspec",
         "build/Avalonia.Generators.props",
         "build/Avalonia.props",
@@ -767,15 +780,16 @@
         "runtimes/win-x86/native/av_libglesv2.dll"
       ]
     },
-    "Avalonia.BuildServices/0.0.29": {
-      "sha512": "U4eJLQdoDNHXtEba7MZUCwrBErBTxFp6sUewXBOdAhU0Kwzwaa/EKFcYm8kpcysjzKtfB4S0S9n0uxKZFz/ikw==",
+    "Avalonia.BuildServices/0.0.31": {
+      "sha512": "KmCN6Hc+45q4OnF10ge450yVUvWuxU6bdQiyKqiSvrHKpahNrEdk0kG6Ip6GHk2SKOCttGQuA206JVdkldEENg==",
       "type": "package",
-      "path": "avalonia.buildservices/0.0.29",
+      "path": "avalonia.buildservices/0.0.31",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "avalonia.buildservices.0.0.29.nupkg.sha512",
+        "Icon.png",
+        "avalonia.buildservices.0.0.31.nupkg.sha512",
         "avalonia.buildservices.nuspec",
         "build/Avalonia.BuildServices.targets",
         "buildTransitive/Avalonia.BuildServices.targets",
@@ -911,15 +925,15 @@
         "runtimes/osx/native/libAvaloniaNative.dylib"
       ]
     },
-    "Avalonia.Remote.Protocol/11.2.1": {
-      "sha512": "aqEialxjir7DO/dOFf7BGN/yQ4/adSC5UuVfqBr/RUHOENSH6CqoHj8kmtmJxnuz7ESQFSB2+h1kLVnk5csiDw==",
+    "Avalonia.Remote.Protocol/11.2.5": {
+      "sha512": "wS/qPTRVmgB49PxVMEFRczWS2UQ91Sl7xBI4qQtVyyi+REeH5L0sXYTjyKkHALI/vZd4DeH4SrleDEX0zNOVmA==",
       "type": "package",
-      "path": "avalonia.remote.protocol/11.2.1",
+      "path": "avalonia.remote.protocol/11.2.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "avalonia.remote.protocol.11.2.1.nupkg.sha512",
+        "avalonia.remote.protocol.11.2.5.nupkg.sha512",
         "avalonia.remote.protocol.nuspec",
         "lib/net6.0/Avalonia.Remote.Protocol.dll",
         "lib/net6.0/Avalonia.Remote.Protocol.xml",
@@ -947,15 +961,15 @@
         "lib/netstandard2.0/Avalonia.Skia.xml"
       ]
     },
-    "Avalonia.Themes.Fluent/11.2.1": {
-      "sha512": "9YUzDmZO5oDppsoA3Igeu/v1cVi4xu8jdO6ZrBzXJXJ9mma/htK0Ub9+V1lRoCW/O70nQfBX+ZDpm0dca1PVgw==",
+    "Avalonia.Themes.Fluent/11.2.5": {
+      "sha512": "+YiihoT08QapE6U6dLyuYC/YMloFllMMwbbnixMLYuvmJeirUzqukuWzQ1cGjyn8CKpqZVIeaCzenJcEu/YGIA==",
       "type": "package",
-      "path": "avalonia.themes.fluent/11.2.1",
+      "path": "avalonia.themes.fluent/11.2.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "avalonia.themes.fluent.11.2.1.nupkg.sha512",
+        "avalonia.themes.fluent.11.2.5.nupkg.sha512",
         "avalonia.themes.fluent.nuspec",
         "lib/net6.0/Avalonia.Themes.Fluent.dll",
         "lib/net6.0/Avalonia.Themes.Fluent.xml",
@@ -1219,6 +1233,36 @@
         "microcom.runtime.nuspec"
       ]
     },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "SkiaSharp/2.88.8": {
       "sha512": "bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
       "type": "package",
@@ -1440,12 +1484,13 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Avalonia >= 11.2.1",
+      "Avalonia >= 11.2.5",
       "Avalonia.Desktop >= 11.2.1",
       "Avalonia.Diagnostics >= 11.2.1",
       "Avalonia.Fonts.Inter >= 11.2.1",
-      "Avalonia.Themes.Fluent >= 11.2.1",
-      "BouncyCastle >= 1.8.9"
+      "Avalonia.Themes.Fluent >= 11.2.5",
+      "BouncyCastle >= 1.8.9",
+      "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
@@ -1492,7 +1537,7 @@
         "dependencies": {
           "Avalonia": {
             "target": "Package",
-            "version": "[11.2.1, )"
+            "version": "[11.2.5, )"
           },
           "Avalonia.Desktop": {
             "target": "Package",
@@ -1508,11 +1553,15 @@
           },
           "Avalonia.Themes.Fluent": {
             "target": "Package",
-            "version": "[11.2.1, )"
+            "version": "[11.2.5, )"
           },
           "BouncyCastle": {
             "target": "Package",
             "version": "[1.8.9, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
           }
         },
         "imports": [

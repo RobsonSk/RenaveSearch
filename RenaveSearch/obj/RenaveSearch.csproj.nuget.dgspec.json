@@ -45,7 +45,7 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.5, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
@@ -61,11 +61,15 @@
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.5, )"
             },
             "BouncyCastle": {
               "target": "Package",
               "version": "[1.8.9, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [

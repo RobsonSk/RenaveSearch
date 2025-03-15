@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RenaveSearch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+275c85123310a23ce48284a38c6280a0ef9ddc67")]
 [assembly: System.Reflection.AssemblyProductAttribute("RenaveSearch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RenaveSearch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

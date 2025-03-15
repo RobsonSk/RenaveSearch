@@ -1,0 +1,42 @@
+<Styles xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Customize the Window style -->
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#F0F0F0"/> <!-- Light gray background -->
+    </Style>
+
+    <!-- Customize the Button style -->
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#E0E0E0"/> <!-- Light gray background -->
+        <Setter Property="Foreground" Value="Black"/> <!-- Black text -->
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="BorderBrush" Value="#A0A0A0"/> <!-- Gray border -->
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="#D0D0D0"/> <!-- Darker gray background on hover -->
+        <Setter Property="Foreground" Value="Black"/> <!-- Black text on hover -->
+        <Setter Property="BorderBrush" Value="#808080"/> <!-- Darker gray border on hover -->
+    </Style>
+
+    <!-- Customize the TextBox style -->
+    <Style Selector="TextBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="#D0D0D0"/> <!-- White background -->
+        <Setter Property="Foreground" Value="Black"/> <!-- Black text -->
+        <Setter Property="BorderBrush" Value="#A0A0A0"/> <!-- Gray border -->
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <!-- Customize the TextBlock style -->
+    <Style Selector="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Foreground" Value="Black"/> <!-- Black text -->
+    </Style>
+</Styles>

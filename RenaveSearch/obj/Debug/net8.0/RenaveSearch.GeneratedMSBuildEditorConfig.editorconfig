@@ -22,5 +22,14 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/DataWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/SettingsWindows.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/Styles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -66,3 +66,5 @@
 /home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/obj/Debug/net8.0/RenaveSearch.genruntimeconfig.cache
 /home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/obj/Debug/net8.0/ref/RenaveSearch.dll
 /home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/bin/Debug/net8.0/BouncyCastle.Crypto.dll
+/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/obj/Debug/net8.0/RenaveSearch.sourcelink.json
+/home/robson.santos@DTACENTER.MR/Dev/RenaveSearch/RenaveSearch/bin/Debug/net8.0/Newtonsoft.Json.dll

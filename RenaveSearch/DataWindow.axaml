@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="RenaveSearch.DataWindow" Title="Data Window" Width="800" Height="600">
+    <StackPanel Margin="10" Spacing="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Chassi:" FontSize="16" Margin="10,40,10,0" VerticalAlignment="Center" Grid.Column="0"/>
+            <TextBox x:Name="ChassiTextBox" FontSize="14" Margin="0,40,10,10" MaxLength="17" Grid.Column="1"/>
+            <Button Content="Procurar Chassi" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="OnSearchDataClick" Width="300" Height="30" Margin="0,10,0,0" Grid.ColumnSpan="2" Grid.Row="1">
+        Procurar Chassi </Button>
+    </Grid>
+    <DockPanel x:Name="AtpvPanel" Margin="0,20,0,0" VerticalAlignment="Center" LastChildFill="False">
+        <TextBlock Text="ATPV Disponivel:" FontSize="16" Height="30" Margin="0,0,10,0" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+        <Ellipse x:Name="StatusIndicator" Width="20" Height="20" Fill="Red" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,0,10,0"/>
+        <Button IsEnabled="False" x:Name="DownloadAtpvButton" Click="OnDownloadAtpvClick" Width="150" Height="40" Margin="0,0,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DockPanel.Dock="Right" Padding="2"> Download ATPV </Button>
+    </DockPanel>
+      <DockPanel x:Name="EntregaPanel" Margin="0,20,0,0" VerticalAlignment="Center" LastChildFill="False">
+        <TextBlock Text="Entrega Disponivel:" FontSize="16" Height="30" Margin="0,0,10,0" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+        <Ellipse x:Name="StatusIndicator2" Width="20" Height="20" Fill="Red" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,0,10,0"/>
+        <Button IsEnabled="False" x:Name="EntregaButton" Width="150" Height="40" Margin="0,0,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DockPanel.Dock="Right" Padding="2"> Download ATPV </Button>
+    </DockPanel>
+</StackPanel>
+</Window>

@@ -1,24 +1,53 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
-using Org.BouncyCastle.OpenSsl;
-using Avalonia.Platform.Storage;
-using Org.BouncyCastle.Pkcs;
-using Org.BouncyCastle.Security;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform.Storage;
+using Avalonia.Media;
+using Newtonsoft.Json.Linq;
 
 namespace RenaveSearch
 {
     public partial class MainWindow : Window
     {
+        private string pfxPassword = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
+            InitializeMainWindow();
+        }
+
+        private async Task InitializeMainWindow()
+        {
+            try
+            {
+                if (CertificateManager.AreEncryptedFilesPresent())
+                {
+                    var (certificate, password) = CertificateManager.LoadCertificateAndPassword();
+                    Console.WriteLine("Certificate and password loaded successfully.");
+                    await ValidateCertificate();
+                }
+                else
+                {
+                    Console.WriteLine("Encrypted files not found. Please add the certificate and password.");
+                    CertificateStatusIndicator.Fill = Brushes.Red;
+                    ApiSearchButton.IsEnabled = false;
+                    // Optionally, prompt the user to add the certificate and password here
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading certificate and password: {ex.Message}");
+                CertificateStatusIndicator.Fill = Brushes.Red;
+                ApiSearchButton.IsEnabled = false;
+            }
         }
 
         private async void OnAddCertificateClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -39,89 +68,73 @@ namespace RenaveSearch
                 // Prompt for the password
                 var passwordDialog = new TextInputDialog("Enter Password", "Please enter the password for the PFX certificate:");
                 var appLifetime = Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-                string? password = null;
                 if (appLifetime?.MainWindow != null)
                 {
-                    password = await passwordDialog.ShowDialog<string>(appLifetime.MainWindow);
+                    pfxPassword = await passwordDialog.ShowDialog<string>(appLifetime.MainWindow);
                 }
 
-                if (!string.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(pfxPassword))
                 {
-                    // Add the certificate using BouncyCastle
-                    await AddCertificate(pfxFilePath, password);
+                    CertificateManager.StoreCertificateAndPassword(pfxFilePath, pfxPassword);
+                    // Console.WriteLine("Certificate path and password saved successfully.");
                 }
             }
         }
 
-        private async Task AddCertificate(string pfxFilePath, string password)
+        private void OnOpenDataClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            await Task.Run(() =>
-            {
-                try
-                {
-                    // Load the PFX file
-                    Pkcs12Store pkcs12Store = new Pkcs12Store(new FileStream(pfxFilePath, FileMode.Open, FileAccess.Read), password.ToCharArray());
-
-                    // Extract the certificate and private key
-                    string alias = null;
-                    foreach (string a in pkcs12Store.Aliases)
-                    {
-                        if (pkcs12Store.IsKeyEntry(a))
-                        {
-                            alias = a;
-                            break;
-                        }
-                    }
-
-                    if (alias == null)
-                    {
-                        throw new Exception("No private key found in the PFX file.");
-                    }
-
-                    var keyEntry = pkcs12Store.GetKey(alias);
-                    var certificateChain = pkcs12Store.GetCertificateChain(alias);
-
-                    // Convert the certificate and private key to PEM format
-                    using (var certWriter = new StreamWriter("cert.pem"))
-                    {
-                        var pemWriter = new PemWriter(certWriter);
-                        foreach (var cert in certificateChain)
-                        {
-                            pemWriter.WriteObject(cert.Certificate);
-                        }
-                        pemWriter.WriteObject(keyEntry.Key);
-                    }
-
-                    // Certificate added successfully
-                    Console.WriteLine("Certificate added successfully.");
-                }
-                catch (Exception ex)
-                {
-                    // Handle error
-                    Console.WriteLine($"Error: {ex.Message}");
-                }
-            });
+            var dataWindow = new DataWindow();
+            dataWindow.Show();
         }
 
-        private async void OnConductApiSearchClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
-        {
-            await ConductApiSearch();
-        }
-
-        private async Task ConductApiSearch()
+        private async Task ValidateCertificate()
         {
             try
             {
-                using (var handler = new HttpClientHandler())
-                {
-                    handler.ClientCertificates.Add(new X509Certificate2("cert.pem"));
+                var (certificateBytes, password) = CertificateManager.LoadCertificateAndPassword();
 
-                    using (var client = new HttpClient(handler))
+                // Console.WriteLine("Certificate bytes length: " + certificateBytes.Length);
+                // Console.WriteLine("Password: " + password);
+
+                // Load the certificate and private key from the PFX file
+                var cert = new X509Certificate2(certificateBytes, password, X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
+                // Console.WriteLine($"Certificate valid from {cert.NotBefore} to {cert.NotAfter}");
+                // foreach (var extension in cert.Extensions)
+                // {
+                //     Console.WriteLine($"{extension.Oid.FriendlyName}: {extension.Format(true)}");
+                // }
+
+                var handler = new HttpClientHandler();
+                handler.ClientCertificates.Add(cert);
+
+                // Add the client certificates to the request properties for logging
+                var loggingHandler = new LoggingHandler(handler);
+
+                using (var client = new HttpClient(loggingHandler))
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+
+                    // Implement the API search logic here using the added certificate
+                    var response = await client.GetAsync("https://renave.estaleiro.serpro.gov.br/renave-ws/api/cliente-autenticado");
+                    var content = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Response status code: {response.StatusCode}");
+                    Console.WriteLine($"Response content: {content}");
+                     if (response.IsSuccessStatusCode)
                     {
-                        // Implement the API search logic here using the added certificate
-                        var response = await client.GetAsync("https://api.example.com/search");
-                        var content = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine(content);
+                        var jsonResponse = JObject.Parse(content);
+                        string name = jsonResponse["nome"]?.ToString();
+                        string cnpj = jsonResponse["cnpj"]?.ToString();
+
+                        NameTextBox.Text = $"{name}";
+                        CnpjTextBox.Text = $"{cnpj}";
+
+                        CertificateStatusIndicator.Fill = Brushes.Green;
+                        ApiSearchButton.IsEnabled = true;
+                    }
+                    else
+                    {
+                        CertificateStatusIndicator.Fill = Brushes.Red;
+ 
                     }
                 }
             }
@@ -129,10 +142,29 @@ namespace RenaveSearch
             {
                 // Handle error
                 Console.WriteLine($"Error: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+                CertificateStatusIndicator.Fill = Brushes.Red;
+                ApiSearchButton.IsEnabled = false;
             }
         }
-    }
+        
 
+        private void OnOpenSettingsClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow();
+            settingsWindow.CertificateSelected += OnCertificateSelected;
+            settingsWindow.Show();
+        }
+
+        private async void OnCertificateSelected(object sender, EventArgs e)
+        {
+            await ValidateCertificate();
+        }
+    }
+    
     public class TextInputDialog : Window
     {
         private TextBox _inputTextBox;
